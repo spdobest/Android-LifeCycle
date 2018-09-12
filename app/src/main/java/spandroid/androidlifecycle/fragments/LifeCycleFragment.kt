@@ -35,7 +35,7 @@ class LifeCycleFragment : Fragment() {
 
         LogUtils.printLog(TAG, "onAttach()")
 
-        strLifecycle.append("onCreate() ")
+        strLifecycle.append("onAttach() ")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

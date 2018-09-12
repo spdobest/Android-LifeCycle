@@ -1,42 +1,47 @@
 package spandroid.androidlifecycle.activity
 
-import android.app.Fragment
-import android.net.Uri
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.support.v4.app.Fragment
+import android.view.View
 import spandroid.androidlifecycle.R
 import spandroid.androidlifecycle.utility.LogUtils
-import kotlinx.android.synthetic.main.activity_life_cycle.*
-import spandroid.androidlifecycle.fragments.LifeCycleFragment
+import kotlinx.android.synthetic.main.activity_b.*
 
-class LifeCycleActivity : AppCompatActivity(), LifeCycleFragment.OnFragmentInteractionListener {
-    override fun onFragmentInteraction(uri: Uri) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+class ActivityB  : AppCompatActivity(),View.OnClickListener{
+    override fun onClick(view: View?) {
+        when(view?.id){
+            R.id.buttonC->{
+                startActivity(Intent(this,ActivityC::class.java))
+            }
+        }
     }
 
     var strLifecycle:StringBuffer = StringBuffer()
 
     companion object {
-        val TAG:String = "LifeCycleActivity"
+        val TAG:String = "ActivityB"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_life_cycle)
+        setContentView(R.layout.activity_b)
 
         LogUtils.printLog(TAG,"OnCreate()")
 
         strLifecycle.append("onCreate() ")
         textViewLifecycle.text = strLifecycle.toString()
 
-        supportFragmentManager.beginTransaction().add(R.id.fragment_container,LifeCycleFragment(), TAG).commit()
 
     }
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
         LogUtils.printLog(TAG,"OnCreate() with persistentState")
+
+        buttonC.setOnClickListener(this)
     }
 
     override fun onStart() {

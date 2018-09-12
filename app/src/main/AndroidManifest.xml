@@ -16,7 +16,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.LifeCycleActivity"></activity>
+        <activity android:name=".activity.LifeCycleActivity" />
+        <activity android:name=".activity.ActivityA" />
+        <activity android:name=".activity.ActivityB" />
+        <activity android:name=".activity.ActivityC" />
+
+
+        <receiver android:name=".reciever.MyBroadCastReciever">
+
+        </receiver>
+
+        <service android:name=".services.MyService">
+
+        </service>
+
+        <service android:name=".services.MyIntentService">
+
+
+        </service>
+
     </application>
 
 </manifest>
