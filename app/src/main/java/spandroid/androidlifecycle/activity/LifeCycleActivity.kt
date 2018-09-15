@@ -10,7 +10,10 @@ import spandroid.androidlifecycle.utility.LogUtils
 import kotlinx.android.synthetic.main.activity_life_cycle.*
 import spandroid.androidlifecycle.fragments.LifeCycleFragment
 
-class LifeCycleActivity : AppCompatActivity(), LifeCycleFragment.OnFragmentInteractionListener {
+class LifeCycleActivity : AppCompatActivity(), 
+        LifeCycleFragment.OnFragmentInteractionListener, LifeCycleFragment.OnPrintListener {
+   
+
     override fun onFragmentInteraction(uri: Uri) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
@@ -30,7 +33,7 @@ class LifeCycleActivity : AppCompatActivity(), LifeCycleFragment.OnFragmentInter
         strLifecycle.append("onCreate() ")
 //        textViewLifecycle.text = strLifecycle.toString()
 
-        showLifecycleMethods()
+        onPrint()
         supportFragmentManager.beginTransaction().add(R.id.fragment_container,LifeCycleFragment(), TAG).commit()
 
     }
@@ -40,7 +43,7 @@ class LifeCycleActivity : AppCompatActivity(), LifeCycleFragment.OnFragmentInter
         LogUtils.printLog(TAG,"onStart()")
         strLifecycle.append("onStart() ")
 //        textViewLifecycle.text = strLifecycle.toString()
-        showLifecycleMethods()
+        onPrint()
     }
 
     override fun onResume() {
@@ -48,7 +51,7 @@ class LifeCycleActivity : AppCompatActivity(), LifeCycleFragment.OnFragmentInter
         LogUtils.printLog(TAG,"onResume()")
         strLifecycle.append("onResume() ")
         //        textViewLifecycle.text = strLifecycle.toString()
-        showLifecycleMethods()
+        onPrint()
     }
 
     override fun onPause() {
@@ -56,7 +59,7 @@ class LifeCycleActivity : AppCompatActivity(), LifeCycleFragment.OnFragmentInter
         LogUtils.printLog(TAG,"onPause(0")
         strLifecycle.append("onPause() ")
         //        textViewLifecycle.text = strLifecycle.toString()
-        showLifecycleMethods()
+        onPrint()
     }
 
     override fun onStop() {
@@ -64,7 +67,7 @@ class LifeCycleActivity : AppCompatActivity(), LifeCycleFragment.OnFragmentInter
         LogUtils.printLog(TAG,"onStop()")
         strLifecycle.append("onStop() ")
         //        textViewLifecycle.text = strLifecycle.toString()
-        showLifecycleMethods()
+        onPrint()
     }
 
     override fun onRestart() {
@@ -72,7 +75,7 @@ class LifeCycleActivity : AppCompatActivity(), LifeCycleFragment.OnFragmentInter
         LogUtils.printLog(TAG,"onRestart()")
         strLifecycle.append("onRestart() ")
         //        textViewLifecycle.text = strLifecycle.toString()
-        showLifecycleMethods()
+        onPrint()
     }
 
     override fun onDestroy() {
@@ -80,7 +83,7 @@ class LifeCycleActivity : AppCompatActivity(), LifeCycleFragment.OnFragmentInter
         LogUtils.printLog(TAG,"onDestroy()")
         strLifecycle.append("onDestroy() ")
         //        textViewLifecycle.text = strLifecycle.toString()
-        showLifecycleMethods()
+        onPrint()
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {
@@ -88,7 +91,7 @@ class LifeCycleActivity : AppCompatActivity(), LifeCycleFragment.OnFragmentInter
         LogUtils.printLog(TAG,"onSaveInstanceState()")
         strLifecycle.append("onSaveInstanceState() ")
         //        textViewLifecycle.text = strLifecycle.toString()
-        showLifecycleMethods()
+        onPrint()
     }
 
     override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
@@ -101,7 +104,7 @@ class LifeCycleActivity : AppCompatActivity(), LifeCycleFragment.OnFragmentInter
         LogUtils.printLog(TAG,"onRestoreInstanceState()")
         strLifecycle.append("onRestoreInstanceState() ")
         //        textViewLifecycle.text = strLifecycle.toString()
-        showLifecycleMethods()
+        onPrint()
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
@@ -124,8 +127,9 @@ class LifeCycleActivity : AppCompatActivity(), LifeCycleFragment.OnFragmentInter
         LogUtils.printLog(TAG,"onAttachFragment()")
         strLifecycle.append("onAttachFragment() ")
     }
-    public fun showLifecycleMethods(methodName:String = "") {
-        strLifecycle.append(methodName)
+     
+    override fun onPrint(message: String) {
+        strLifecycle.append(message)
         textViewLifecycle.text = strLifecycle.toString()
     }
 }

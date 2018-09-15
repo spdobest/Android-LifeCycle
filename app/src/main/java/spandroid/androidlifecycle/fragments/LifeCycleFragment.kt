@@ -18,6 +18,9 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 class LifeCycleFragment : Fragment() {
+    
+    lateinit var onPrintListener: OnPrintListener
+    
     private var param1: String? = null
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
@@ -33,12 +36,18 @@ class LifeCycleFragment : Fragment() {
         } else {
             throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
         }
+        
+        if (context is OnPrintListener) {
+            onPrintListener = context
+        } else {
+            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
+        }
 
-        LogUtils.printLog(TAG, "onAttach()")
+        LogUtils.printLog(TAG, "onAttach(Fragment)")
 
         strLifecycle.append("onAttach(Fragment)")
 
-        (LifeCycleActivity()).showLifecycleMethods("onAttach()")
+        onPrintListener.onPrint("onAttach()")
 
     }
 
@@ -50,14 +59,14 @@ class LifeCycleFragment : Fragment() {
         }
         LogUtils.printLog(TAG, "onCreate()")
         strLifecycle.append("onCreate() ")
-        (LifeCycleActivity()).showLifecycleMethods("onCreate(Fragment)")
+        onPrintListener.onPrint("onCreate(Fragment)")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         LogUtils.printLog(TAG, "onCreateView()")
-        (LifeCycleActivity()).showLifecycleMethods("onCreateView(Fragment)")
+        onPrintListener.onPrint("onCreateView(Fragment)")
         return inflater.inflate(R.layout.fragment_life_cycle, container, false)
     }
 
@@ -68,7 +77,7 @@ class LifeCycleFragment : Fragment() {
         strLifecycle.append("onViewCreated() ")
         textViewFragmentLifecycle.text = strLifecycle.toString()
 
-        (LifeCycleActivity()).showLifecycleMethods("onViewCreated(Fragment)")
+        onPrintListener.onPrint("onViewCreated(Fragment)")
 
     }
 
@@ -78,7 +87,7 @@ class LifeCycleFragment : Fragment() {
         strLifecycle.append("onStart() ")
         textViewFragmentLifecycle.text = strLifecycle.toString()
 
-        (LifeCycleActivity()).showLifecycleMethods("onStart(Fragment)")
+        onPrintListener.onPrint("onStart(Fragment)")
     }
 
     override fun onResume() {
@@ -87,35 +96,34 @@ class LifeCycleFragment : Fragment() {
         strLifecycle.append("onResume() ")
         textViewFragmentLifecycle.text = strLifecycle.toString()
 
-        (LifeCycleActivity()).showLifecycleMethods("onResume(Fragment)")
+        onPrintListener.onPrint("onResume(Fragment)")
     }
 
     override fun onPause() {
         super.onPause()
         LogUtils.printLog(TAG, "onPause()")
         strLifecycle.append("onPause() ")
-        (LifeCycleActivity()).showLifecycleMethods("onPause(Fragment)")
+        onPrintListener.onPrint("onPause(Fragment)")
     }
 
     override fun onStop() {
         super.onStop()
         LogUtils.printLog(TAG, "onStop()")
         strLifecycle.append("onStop() ")
-        (LifeCycleActivity()).showLifecycleMethods("onStop(Fragment)")
+        onPrintListener.onPrint("onStop(Fragment)")
     }
 
     override fun onDestroy() {
         super.onDestroy()
         LogUtils.printLog(TAG, "onDestroy()")
         strLifecycle.append("onDestroy() ")
-        (LifeCycleActivity()).showLifecycleMethods("onDestroy(Fragment)")
+        onPrintListener.onPrint("onDestroy(Fragment)")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         LogUtils.printLog(TAG, "onDestroyView()")
         strLifecycle.append("onDestroyView() ")
-        (LifeCycleActivity()).showLifecycleMethods("onDestroyView(Fragment)")
     }
 
 
@@ -124,7 +132,7 @@ class LifeCycleFragment : Fragment() {
         listener = null
         LogUtils.printLog(TAG, "onDetach()")
         strLifecycle.append("onDetach() ")
-        (LifeCycleActivity()).showLifecycleMethods("onDetach(Fragment)")
+        onPrintListener.onPrint("onDetach(Fragment)")
     }
 
     override fun onLowMemory() {
@@ -153,5 +161,9 @@ class LifeCycleFragment : Fragment() {
                         putString(ARG_PARAM2, param2)
                     }
                 }
+    }
+    
+    public interface OnPrintListener{
+        fun onPrint(message:String="")
     }
 }
