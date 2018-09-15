@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.activity_life_cycle.*
 
 import spandroid.androidlifecycle.R
+import spandroid.androidlifecycle.activity.LifeCycleActivity
 import spandroid.androidlifecycle.utility.LogUtils
 
 private const val ARG_PARAM1 = "param1"
@@ -35,7 +36,10 @@ class LifeCycleFragment : Fragment() {
 
         LogUtils.printLog(TAG, "onAttach()")
 
-        strLifecycle.append("onAttach() ")
+        strLifecycle.append("onAttach(Fragment)")
+
+        (LifeCycleActivity()).showLifecycleMethods("onAttach()")
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,22 +50,25 @@ class LifeCycleFragment : Fragment() {
         }
         LogUtils.printLog(TAG, "onCreate()")
         strLifecycle.append("onCreate() ")
+        (LifeCycleActivity()).showLifecycleMethods("onCreate(Fragment)")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         LogUtils.printLog(TAG, "onCreateView()")
+        (LifeCycleActivity()).showLifecycleMethods("onCreateView(Fragment)")
         return inflater.inflate(R.layout.fragment_life_cycle, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         LogUtils.printLog(TAG, "onViewCreated()")
-
         textViewFragmentLifecycle = view.findViewById(R.id.textViewFragmentLifecycle)
         strLifecycle.append("onViewCreated() ")
         textViewFragmentLifecycle.text = strLifecycle.toString()
+
+        (LifeCycleActivity()).showLifecycleMethods("onViewCreated(Fragment)")
 
     }
 
@@ -70,6 +77,8 @@ class LifeCycleFragment : Fragment() {
         LogUtils.printLog(TAG, "onStart()")
         strLifecycle.append("onStart() ")
         textViewFragmentLifecycle.text = strLifecycle.toString()
+
+        (LifeCycleActivity()).showLifecycleMethods("onStart(Fragment)")
     }
 
     override fun onResume() {
@@ -77,30 +86,36 @@ class LifeCycleFragment : Fragment() {
         LogUtils.printLog(TAG, "onResume()")
         strLifecycle.append("onResume() ")
         textViewFragmentLifecycle.text = strLifecycle.toString()
+
+        (LifeCycleActivity()).showLifecycleMethods("onResume(Fragment)")
     }
 
     override fun onPause() {
         super.onPause()
         LogUtils.printLog(TAG, "onPause()")
         strLifecycle.append("onPause() ")
+        (LifeCycleActivity()).showLifecycleMethods("onPause(Fragment)")
     }
 
     override fun onStop() {
         super.onStop()
         LogUtils.printLog(TAG, "onStop()")
         strLifecycle.append("onStop() ")
+        (LifeCycleActivity()).showLifecycleMethods("onStop(Fragment)")
     }
 
     override fun onDestroy() {
         super.onDestroy()
         LogUtils.printLog(TAG, "onDestroy()")
-        strLifecycle.append("onSonDestroytop() ")
+        strLifecycle.append("onDestroy() ")
+        (LifeCycleActivity()).showLifecycleMethods("onDestroy(Fragment)")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         LogUtils.printLog(TAG, "onDestroyView()")
         strLifecycle.append("onDestroyView() ")
+        (LifeCycleActivity()).showLifecycleMethods("onDestroyView(Fragment)")
     }
 
 
@@ -109,6 +124,7 @@ class LifeCycleFragment : Fragment() {
         listener = null
         LogUtils.printLog(TAG, "onDetach()")
         strLifecycle.append("onDetach() ")
+        (LifeCycleActivity()).showLifecycleMethods("onDetach(Fragment)")
     }
 
     override fun onLowMemory() {

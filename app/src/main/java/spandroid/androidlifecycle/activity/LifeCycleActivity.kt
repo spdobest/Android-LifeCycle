@@ -28,64 +28,67 @@ class LifeCycleActivity : AppCompatActivity(), LifeCycleFragment.OnFragmentInter
         LogUtils.printLog(TAG,"OnCreate()")
 
         strLifecycle.append("onCreate() ")
-        textViewLifecycle.text = strLifecycle.toString()
+//        textViewLifecycle.text = strLifecycle.toString()
 
+        showLifecycleMethods()
         supportFragmentManager.beginTransaction().add(R.id.fragment_container,LifeCycleFragment(), TAG).commit()
 
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
-        LogUtils.printLog(TAG,"OnCreate() with persistentState")
     }
 
     override fun onStart() {
         super.onStart()
         LogUtils.printLog(TAG,"onStart()")
         strLifecycle.append("onStart() ")
-        textViewLifecycle.text = strLifecycle.toString()
+//        textViewLifecycle.text = strLifecycle.toString()
+        showLifecycleMethods()
     }
 
     override fun onResume() {
         super.onResume()
         LogUtils.printLog(TAG,"onResume()")
         strLifecycle.append("onResume() ")
-        textViewLifecycle.text = strLifecycle.toString()
+        //        textViewLifecycle.text = strLifecycle.toString()
+        showLifecycleMethods()
     }
 
     override fun onPause() {
         super.onPause()
         LogUtils.printLog(TAG,"onPause(0")
         strLifecycle.append("onPause() ")
-        textViewLifecycle.text = strLifecycle.toString()
+        //        textViewLifecycle.text = strLifecycle.toString()
+        showLifecycleMethods()
     }
 
     override fun onStop() {
         super.onStop()
         LogUtils.printLog(TAG,"onStop()")
         strLifecycle.append("onStop() ")
-        textViewLifecycle.text = strLifecycle.toString()
+        //        textViewLifecycle.text = strLifecycle.toString()
+        showLifecycleMethods()
     }
 
     override fun onRestart() {
         super.onRestart()
         LogUtils.printLog(TAG,"onRestart()")
         strLifecycle.append("onRestart() ")
-        textViewLifecycle.text = strLifecycle.toString()
+        //        textViewLifecycle.text = strLifecycle.toString()
+        showLifecycleMethods()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         LogUtils.printLog(TAG,"onDestroy()")
         strLifecycle.append("onDestroy() ")
-        textViewLifecycle.text = strLifecycle.toString()
+        //        textViewLifecycle.text = strLifecycle.toString()
+        showLifecycleMethods()
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {
         super.onSaveInstanceState(outState)
         LogUtils.printLog(TAG,"onSaveInstanceState()")
         strLifecycle.append("onSaveInstanceState() ")
-        textViewLifecycle.text = strLifecycle.toString()
+        //        textViewLifecycle.text = strLifecycle.toString()
+        showLifecycleMethods()
     }
 
     override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
@@ -97,7 +100,8 @@ class LifeCycleActivity : AppCompatActivity(), LifeCycleFragment.OnFragmentInter
         super.onRestoreInstanceState(savedInstanceState)
         LogUtils.printLog(TAG,"onRestoreInstanceState()")
         strLifecycle.append("onRestoreInstanceState() ")
-        textViewLifecycle.text = strLifecycle.toString()
+        //        textViewLifecycle.text = strLifecycle.toString()
+        showLifecycleMethods()
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
@@ -119,5 +123,9 @@ class LifeCycleActivity : AppCompatActivity(), LifeCycleFragment.OnFragmentInter
         super.onAttachFragment(fragment)
         LogUtils.printLog(TAG,"onAttachFragment()")
         strLifecycle.append("onAttachFragment() ")
+    }
+    public fun showLifecycleMethods(methodName:String = "") {
+        strLifecycle.append(methodName)
+        textViewLifecycle.text = strLifecycle.toString()
     }
 }
