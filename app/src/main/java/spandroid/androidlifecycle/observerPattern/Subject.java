@@ -1,7 +1,6 @@
 package spandroid.androidlifecycle.observerPattern;
-
 public interface Subject {
-    void registerObserver(RepositoryObserver repositoryObserver);
-    void removeObserver(RepositoryObserver repositoryObserver);
-    void notifyObservers();
+    public void register(Observer observer);
+    public void unregister(Observer observer);
+    public void notifyObservers(String message);
 }

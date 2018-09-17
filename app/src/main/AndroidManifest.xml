@@ -11,11 +11,10 @@
         android:theme="@style/AppTheme">
         <activity android:name=".HomeActivity">
 
-            <intent-filter>
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
 
         </activity>
         <activity android:name=".activity.LifeCycleActivity" />
@@ -36,6 +35,13 @@
             </intent-filter>-->
         </activity>
         <activity android:name=".fragComm.MyFragmentsActivity"></activity>
+        <activity android:name=".observerPattern.ObserverActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

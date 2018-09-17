@@ -1,4 +1,4 @@
-package spandroid.androidlifecycle.fragComm.fragment_communicationusing_observer
+
 
 
 import android.content.Context

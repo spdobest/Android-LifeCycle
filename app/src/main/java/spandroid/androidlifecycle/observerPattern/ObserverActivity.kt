@@ -1,6 +1,5 @@
 package spandroid.androidlifecycle.observerPattern
 
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -8,16 +7,12 @@ import android.support.v4.app.Fragment
 import android.view.View
 import spandroid.androidlifecycle.R
 import spandroid.androidlifecycle.utility.LogUtils
-import kotlinx.android.synthetic.main.activity_a.*
-import java.util.*
 
-class ObserverActivityA  : AppCompatActivity(),View.OnClickListener, Observer {
+class ObserverActivity  : AppCompatActivity(),View.OnClickListener {
 
-    override fun update(p0: Observable?, p1: Any?) {
-
+    companion object {
+        val TAG:String = "ObserverActivity"
     }
-
-    lateinit var mUserDataRepositoryObservable: UserDataRepository
 
     override fun onClick(view: View?) {
         when(view?.id){
@@ -27,10 +22,6 @@ class ObserverActivityA  : AppCompatActivity(),View.OnClickListener, Observer {
 
     var strLifecycle:StringBuffer = StringBuffer()
 
-    companion object {
-        val TAG:String = "ObserverActivityA"
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_observer)
@@ -38,65 +29,61 @@ class ObserverActivityA  : AppCompatActivity(),View.OnClickListener, Observer {
         LogUtils.printLog(TAG,"OnCreate()")
 
         strLifecycle.append("onCreate() ")
-        textViewLifecycle.text = strLifecycle.toString()
 
-        mUserDataRepositoryObservable = UserDataRepository.getInstance()
-        mUserDataRepositoryObservable.addObserver(this)
+        val fragmentA:ObserverFragmentA = ObserverFragmentA()
+        val fragmentB:ObserverFragmentB = ObserverFragmentB()
 
-    }
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
-        LogUtils.printLog(TAG,"OnCreate() with persistentState")
+
+
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container1,fragmentA,"A").commitAllowingStateLoss()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container2,fragmentB,"B").commitAllowingStateLoss()
+
+
+        fragmentA.register(fragmentB)
+
     }
 
     override fun onStart() {
         super.onStart()
         LogUtils.printLog(TAG,"onStart()")
         strLifecycle.append("onStart() ")
-        textViewLifecycle.text = strLifecycle.toString()
     }
 
     override fun onResume() {
         super.onResume()
         LogUtils.printLog(TAG,"onResume()")
         strLifecycle.append("onResume() ")
-        textViewLifecycle.text = strLifecycle.toString()
     }
 
     override fun onPause() {
         super.onPause()
         LogUtils.printLog(TAG,"onPause(0")
         strLifecycle.append("onPause() ")
-        textViewLifecycle.text = strLifecycle.toString()
     }
 
     override fun onStop() {
         super.onStop()
         LogUtils.printLog(TAG,"onStop()")
         strLifecycle.append("onStop() ")
-        textViewLifecycle.text = strLifecycle.toString()
     }
 
     override fun onRestart() {
         super.onRestart()
         LogUtils.printLog(TAG,"onRestart()")
         strLifecycle.append("onRestart() ")
-        textViewLifecycle.text = strLifecycle.toString()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         LogUtils.printLog(TAG,"onDestroy()")
         strLifecycle.append("onDestroy() ")
-        textViewLifecycle.text = strLifecycle.toString()
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {
         super.onSaveInstanceState(outState)
         LogUtils.printLog(TAG,"onSaveInstanceState()")
         strLifecycle.append("onSaveInstanceState() ")
-        textViewLifecycle.text = strLifecycle.toString()
     }
 
     override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
@@ -108,7 +95,6 @@ class ObserverActivityA  : AppCompatActivity(),View.OnClickListener, Observer {
         super.onRestoreInstanceState(savedInstanceState)
         LogUtils.printLog(TAG,"onRestoreInstanceState()")
         strLifecycle.append("onRestoreInstanceState() ")
-        textViewLifecycle.text = strLifecycle.toString()
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
