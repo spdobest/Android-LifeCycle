@@ -6,6 +6,7 @@ import android.os.PersistableBundle
 import android.support.v4.app.Fragment
 import android.view.View
 import spandroid.androidlifecycle.R
+import spandroid.androidlifecycle.oreoBadges.OreoNotificationHelper
 import spandroid.androidlifecycle.utility.LogUtils
 
 class ObserverActivity  : AppCompatActivity(),View.OnClickListener {
@@ -33,6 +34,8 @@ class ObserverActivity  : AppCompatActivity(),View.OnClickListener {
         val fragmentA:ObserverFragmentA = ObserverFragmentA()
         val fragmentB:ObserverFragmentB = ObserverFragmentB()
 
+        val oreoNotificationHelper = OreoNotificationHelper(this)
+        oreoNotificationHelper.postOreoNotification(this,123,"SIba","satya")
 
 
 
