@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="spandroid.androidlifecycle">
 
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".HomeActivity">
 
             <!--
@@ -26,7 +29,9 @@
 
         <receiver android:name=".reciever.MyBroadCastReciever" />
 
-        <service android:name=".services.MyService" />
+        <service android:name=".services.MyService"
+            android:process=""
+            />
         <service android:name=".services.MyIntentService" />
 
         <activity android:name=".activity.CrashActivity">
@@ -70,13 +75,17 @@
                 android:resource="@xml/new_app_widget_info" />
         </receiver>
 
-        <!--<activity android:name=".appWidgets.NewAppWidgetConfigureActivity">
+        <!--
+        <activity android:name=".appWidgets.NewAppWidgetConfigureActivity">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
-        </activity>-->
+        </activity>
+        -->
 
-        <!--<receiver android:name=".appWidgets.NewAppWidget">
+
+        <!--
+        <receiver android:name=".appWidgets.NewAppWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -84,9 +93,17 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/new_app_widget_info" />
-        </receiver>-->
+        </receiver>
+        -->
 
-        <activity android:name=".oreoBadges.OreoBadgeActivity"></activity>
+        <activity android:name=".oreoBadges.OreoBadgeActivity" />
+        <service
+            android:exported="false"
+            android:name=".services.jobSchedler.MyJobService">
+            <intent-filter>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
