@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="spandroid.androidlifecycle">
 
-
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".HomeActivity">
 
             <!--
@@ -29,9 +26,9 @@
 
         <receiver android:name=".reciever.MyBroadCastReciever" />
 
-        <service android:name=".services.MyService"
-            android:process=""
-            />
+        <service
+            android:name=".services.MyService"
+            android:process="" />
         <service android:name=".services.MyIntentService" />
 
         <activity android:name=".activity.CrashActivity">
@@ -46,13 +43,13 @@
         </activity>
         <activity android:name=".fragComm.MyFragmentsActivity" />
         <activity android:name=".observerPattern.ObserverActivity">
-            <intent-filter>
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
 
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
 
         <!-- APP WIDGETS -->
@@ -97,13 +94,22 @@
         -->
 
         <activity android:name=".oreoBadges.OreoBadgeActivity" />
+
         <service
-            android:exported="false"
-            android:name=".services.jobSchedler.MyJobService">
+            android:name=".services.jobSchedler.MyJobService"
+            android:exported="false">
             <intent-filter>
-                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
             </intent-filter>
         </service>
+
+        <activity android:name=".backStack.BackStackActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>
